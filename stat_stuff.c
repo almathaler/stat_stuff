@@ -19,8 +19,9 @@ int main(){
 }
 void print_file_size(char *path, struct stat *StaT){
   stat(path, StaT);
-  int size = StaT->st_size;
-  printf("size of the file: %d\n", size);
+  double size = StaT->st_size;
+  size = size / 10;
+  printf("size of the file: %fKB\n", size);
 }
 void print_mode(char *path, struct stat *StaT){
   stat(path, StaT);
