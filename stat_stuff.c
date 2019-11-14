@@ -10,10 +10,10 @@ void print_atime(char *path, struct stat *StaT);
 
 int main(){
   struct stat StaT;
-  printf("welcome to alma's work 05, stating files:\n\n");
-  print_file_size("makefile", &StaT);
-  print_mode("makefile", &StaT);
-  print_atime("makefile", &StaT);
+  printf("welcome to alma's work 05, stats of ./program:\n\n");
+  print_file_size("program", &StaT);
+  print_mode("program", &StaT);
+  print_atime("program", &StaT);
   printf("\nthank you for viewing!\n\n");
   return 0;
 }
@@ -30,9 +30,9 @@ void print_mode(char *path, struct stat *StaT){
   mode = octalMode;
   printf("rwx mode: ");
   int i;
-  int k;
   int digit;
-  char arr[3] = {'x', 'w', 'r'};
+  char arr[3] = {'r', 'x', 'w'};
+/*
   for (k=0; k<3; k++){
     for (i=0; i<3; i++){ //x, then w, then r
       digit = mode%0b10; //mod by 2 to cut off the last digit
@@ -42,6 +42,16 @@ void print_mode(char *path, struct stat *StaT){
       }else{
         printf("-");
       }
+    }
+  }
+*/
+  int bit_shifted;
+  for (i = 9; i>0; i--){
+    bit_shifted = mode>>(i-1);
+    if (bit_shifted&1){
+      printf("%c", arr[i%3]);
+    }else{
+      printf("-");
     }
   }
   printf("\noctal mode of the file: %o\n", octalMode);
