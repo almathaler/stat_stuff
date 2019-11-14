@@ -26,6 +26,7 @@ void print_file_size(char *path, struct stat *StaT){
 void print_mode(char *path, struct stat *StaT){
   stat(path, StaT);
   int mode = StaT->st_mode;
+  mode = mode%01000;
   printf("mode of the file: %o\n", mode);
 }
 void print_atime(char *path, struct stat *StaT){
